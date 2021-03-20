@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<title>Flask app</title>
+	<link rel="stylesheet" href="{{ url_for('static', filename='css/main.css') }}">
+</head>
+
+<nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+  <a class="navbar-brand" href="#">Compare results from data sources</a>
+</nav>
+
+<body style="margin-left: 31px;">
+
+	<form style="margin-top: 10px;" action="/" method="get">
+	<button type="submit" class="btn btn-primary">Submit</button>
+
+	<div class=container, style="width: 100%;">
+		<div style="width: 32%; height: 1000px; display: inline-block; margin: auto; font-size: 12px;">
+			<h2>Databricks Query</h2>
+
+				<textarea name="databricks" style="width: 90%; height: 200px;" wrap="soft">{{ databricks_result }}</textarea>
+				<!-- <textarea style="width: 90%; height: 200px;" name="result">{{ result_db }}</textarea> -->
+                <h1>Results</h1>
+				<div class="table table-hover", style="width: 90%; height: 1000px; overflow-y: scroll; border: 5px solid grey;">{{ databricks_data | safe}}</div>
+
+		</div>
+		<div style="width: 32%; height: 1000px; display: inline-block; margin: auto; font-size: 12px;">
+			<h2>Salesforce SOQL query</h2>
+			<form action="/" method="get">
+				<textarea name="salesforce" style="width: 90%; height: 200px;" wrap="soft">{{ sf_result }}</textarea>
+				<h1>Results</h1>
+				<div class="table table-hover",  style="width: 90%; height: 1000px; overflow-y: scroll; border: 5px solid grey;">{{ sf_data | safe}}</div>
+
+		</div>
+		<div style="width: 32%; height: 1000px; display: inline-block; margin: auto; font-size: 12px;">
+			<h2>STEP Graph QL query</h2>
+			<form action="/" method="get">
+				<textarea name="step" style="width: 90%; height: 200px;" wrap="soft">{{ step_result }}</textarea>
+				<h1>Results</h1>
+				<div class="table table-hover", style="width: 90%; height: 1000px; overflow-y: scroll; border: 5px solid grey;">{{ step_data | safe}}</div>
+
+		</div>
+	</form>
+</body>
+
+</html>
